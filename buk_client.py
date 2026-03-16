@@ -10,7 +10,9 @@ load_dotenv()
 
 BUK_API_TOKEN = os.getenv("BUK_API_TOKEN", "")
 BUK_COMPANY_SLUG = os.getenv("BUK_COMPANY_SLUG", "")
-BASE_URL = f"https://app.buk.cl/api/v1/c/{BUK_COMPANY_SLUG}"
+# Soporta subdominio propio (singulares.buk.cl) o URL estándar (app.buk.cl/c/slug)
+_base_env = os.getenv("BUK_BASE_URL", "")
+BASE_URL = _base_env if _base_env else f"https://app.buk.cl/api/v1/c/{BUK_COMPANY_SLUG}"
 
 
 def _headers():
